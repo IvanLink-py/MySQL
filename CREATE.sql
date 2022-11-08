@@ -1,0 +1,95 @@
+--@block
+DROP DATABASE IF EXISTS foo;
+
+CREATE DATABASE IF NOT EXISTS foo;
+
+USE foo;
+
+--@block
+DROP TABLE IF EXISTS table1;
+
+CREATE TABLE IF NOT EXISTS table1 (id INT);
+
+--@block 
+SHOW TABLES;
+
+--@block
+DESCRIBE table1;
+
+--@block
+DROP TABLE IF EXISTS table2;
+
+CREATE TABLE IF NOT EXISTS table2 (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    txt VARCHAR(100) NOT NULL DEFAULT 'text',
+    txt2 VARCHAR(100) COMMENT 'text'
+);
+
+--@block
+DESCRIBE table2;
+
+--@block
+DROP TEMPORARY TABLE IF EXISTS table3;
+
+CREATE TEMPORARY TABLE IF NOT EXISTS table3 (id INT PRIMARY KEY AUTO_INCREMENT) AUTO_INCREMENT 100;
+
+--@block
+DESCRIBE table3;
+
+--@block 
+SHOW TABLES;
+
+--@block
+SHOW CREATE TABLE table3;
+
+--@block
+DROP TABLE IF EXISTS table4;
+
+CREATE TABLE IF NOT EXISTS table4 (
+    id INT NOT NULL AUTO_INCREMENT,
+    txt VARCHAR(100) NOT NULL DEFAULT 'text',
+    txt2 VARCHAR(100) COMMENT 'text',
+    PRIMARY KEY (`id`)
+);
+
+--@block
+DROP TABLE IF EXISTS table5;
+
+CREATE TABLE table5 AS
+SELECT
+    USER,
+    HOST
+FROM
+    mysql.USER;
+
+--@block
+DESCRIBE table5;
+
+--@block 
+SELECT
+    *
+FROM
+    table5;
+
+--@block
+DROP TABLE IF EXISTS table6;
+
+CREATE TABLE table6 LIKE table5;
+
+--@block
+DESCRIBE table6;
+
+--@block 
+SELECT
+    *
+FROM
+    table6;
+
+--@block 
+SHOW CREATE TABLE table6;
+
+--@block
+CREATE TABLE table6 (
+    USER char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+    HOST char(60) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE = InnoDB DEFAULT CHARSET = latin1

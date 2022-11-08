@@ -218,8 +218,8 @@ FROM
 GROUP BY
     continent,
     region WITH ROLLUP
-ORDER BYр
-    continent,
+ORDER BY
+    р continent,
     region;
 
 --@block 
@@ -236,10 +236,20 @@ HAVING
 --@block 
 SELECT
     continent,
-    SUM(population) into outfile 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/q.txt'
+    SUM(population) INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/q.txt'
 FROM
     country
 GROUP BY
     1
 HAVING
     SUM(population) >= 482993000;
+
+--@block 
+SELECT
+    SUM(population) INTO @count
+FROM
+    country;
+
+--@block 
+SELECT
+    @count;

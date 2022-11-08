@@ -1,0 +1,27 @@
+--@block
+CREATE DATABASE foo;
+
+CREATE DATABASE IF NOT EXISTS foo;
+
+--@block
+SHOW DATABASES;
+
+--@block
+DROP DATABASE IF EXISTS foo;
+
+--@block
+SELECT
+    DATABASE();
+
+--@block
+SHOW CREATE DATABASE foo;
+
+--@block 
+CREATE DATABASE foo;
+
+DEFAULT CHARACTER SET utf8;
+
+COLLATE utf8_general_ci;
+
+--@block
+CREATE SCHEMA IF NOT EXISTS foo;
