@@ -217,10 +217,7 @@ FROM
     country
 GROUP BY
     continent,
-    region WITH ROLLUP
-ORDER BY
-    р continent,
-    region;
+    region WITH ROLLUP;
 
 --@block 
 SELECT
@@ -236,7 +233,7 @@ HAVING
 --@block 
 SELECT
     continent,
-    SUM(population) INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/q.txt'
+    SUM(population) INTO OUTFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/q.txt'
 FROM
     country
 GROUP BY
