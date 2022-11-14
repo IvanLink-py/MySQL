@@ -3,6 +3,8 @@ DROP DATABASE IF EXISTS test34;
 
 CREATE DATABASE test34;
 
+Use test34;
+
 --@block TABLE tbl1
 DROP TABLE IF EXISTS tbl1;
 
@@ -10,7 +12,7 @@ CREATE TABLE tbl1(
     id INT PRIMARY KEY AUTO_INCREMENT,
     txt varchar(50) NOT NULL DEFAULT '',
     dt datetime,
-    col4 enum('case1', 'case2', 'case3')
+    col4 enum('case1', 'case2', 'case3') 
 );
 
 --@block 
@@ -82,10 +84,12 @@ SELECT
 FROM
     MySQL.user;
 
------------------- LOAD -----------------------
+
+
+-- ---------------- LOAD -----------------------
 --@block 
 LOAD data 
-    INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/data.txt' 
+    INFILE 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/data.txt' 
     INTO TABLE tbl1 
     FIELDS TERMINATED BY ',' 
     LINES TERMINATED BY '\n';
