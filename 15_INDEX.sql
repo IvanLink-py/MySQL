@@ -1,12 +1,14 @@
-
 --@block
 USE test34;
 
+--@block
+DROP TABLE IF EXISTS articles;
 CREATE TABLE articles (
     id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
     title varchar(200),
-    body text FULLTEXT (title, body)
-) ENGINE = InnoDB;
+    body text,
+    FULLTEXT (title, body)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 --@block
 INSERT INTO
@@ -52,7 +54,8 @@ FROM
     INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 
 --@block
-CREATE TABLE my_stopwords(value VARCHAR(30)) ENGINE = INNODB;
+DROP TABLE IF EXISTS my_stopwords;
+CREATE TABLE my_stopwords(value VARCHAR(30)) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 DEFAULT COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO
     my_stopwords(value)
@@ -64,11 +67,10 @@ SET
     GLOBAL innodb_ft_server_stopword_table = 'test34/my_stopwords';
 
 --@block
-SHOW CREATE TABLES articles;
+SHOW CREATE TABLE articles;
 
 --@block
-DROP FULLTEXT INDEX `title` ON articles;
+DROP FULLTEXT INDEX ON articles;
 
 --@block
 CREATE FULLTEXT INDEX idx ON articles (title, body);
-

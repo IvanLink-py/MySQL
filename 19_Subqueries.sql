@@ -1,5 +1,3 @@
-USE world;
-
 SELECT
     name
 FROM
@@ -7,7 +5,7 @@ FROM
 WHERE
     code = (
         SELECT
-            coutrycode
+            CountryCode
         FROM
             city
         ORDER BY
@@ -24,13 +22,13 @@ FROM
 WHERE
     code IN (
         SELECT
-            coutrycode
+            CountryCode
         FROM
             city
-        ORDER BY
-            population DESC
         WHERE
             population > 5e6
+        ORDER BY
+            population DESC
     );
 
 --@block
@@ -41,13 +39,13 @@ FROM
 WHERE
     code = ANY (
         SELECT
-            coutrycode
+            CountryCode
         FROM
             city
-        ORDER BY
-            population DESC
         WHERE
             population > 5e6
+        ORDER BY
+            population DESC
     );
 
 --@block
@@ -58,19 +56,18 @@ FROM
 WHERE
     code = SOME (
         SELECT
-            coutrycode
+            CountryCode
         FROM
             city
-        ORDER BY
-            population DESC
         WHERE
             population > 5e6
+        ORDER BY
+            population DESC
     );
-
 
 --@block
 SELECT
-    coutrycode,
+    CountryCode,
     name
 FROM
     city
@@ -92,8 +89,9 @@ WHERE
         FROM
             city
         WHERE
-            coutrycode = 'JPN'
-    ) AND coutrycode = 'BRA';
+            CountryCode = 'JPN'
+    )
+    AND CountryCode = 'BRA';
 
 --@block
 SELECT
@@ -108,18 +106,9 @@ WHERE
         FROM
             city
         WHERE
-            coutrycode = 'BRA'
-    ) AND coutrycode = 'JPN';
-
-
---@block
-SELECT
-    name,
-    population
-FROM
-    city
-WHERE
-    AND coutrycode = 'BRA';
+            CountryCode = 'BRA'
+    )
+    AND CountryCode = 'JPN';
 
 --@block
 SELECT
@@ -128,7 +117,16 @@ SELECT
 FROM
     city
 WHERE
-    AND coutrycode = 'JPN';
+    CountryCode = 'BRA';
+
+--@block
+SELECT
+    name,
+    population
+FROM
+    city
+WHERE
+    CountryCode = 'JPN';
 
 --@block
 SELECT
@@ -143,8 +141,9 @@ WHERE
         FROM
             city
         WHERE
-            coutrycode = 'JPN'
-    ) AND coutrycode = 'BRA';
+            CountryCode = 'JPN'
+    )
+    AND CountryCode = 'BRA';
 
 --@block
 SELECT
@@ -159,5 +158,6 @@ WHERE
         FROM
             city
         WHERE
-            coutrycode = 'JPN'
-    ) AND coutrycode = 'BRA';
+            CountryCode = 'JPN'
+    )
+    AND CountryCode = 'BRA';
